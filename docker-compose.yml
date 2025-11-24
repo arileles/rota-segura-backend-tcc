@@ -1,0 +1,19 @@
+volumes:
+  postgresql_data:
+    driver: local
+
+services:
+
+  database:
+    container_name: rotasegura-container
+    restart: always
+    image: postgres:12.3
+    environment:
+      POSTGRES_DB: rotasegura
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    

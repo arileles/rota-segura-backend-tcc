@@ -1,0 +1,1 @@
+ALTER TABLE public.media ADD COLUMN image_data BYTEA;

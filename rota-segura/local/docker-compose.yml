@@ -1,0 +1,48 @@
+volumes:
+  postgresql_data:
+    driver: local
+
+services:
+
+  database:
+    container_name: rotasegura-database
+    restart: always
+    image: postgres:12.3
+    environment:
+      POSTGRES_DB: rotasegura
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+
+  backend:
+    container_name: rotasegura-backend
+    restart: always
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: us-central1-docker.pkg.dev/galvanic-tea-477602-t7/rotasegura/rotasegura-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/rotasegura
+      SPRING_DATASOURCE_USERNAME: postgress
+      SPRING_DATASOURCE_PASSWORD: postgres
+      GOOGLE_API_KEY: AIzaSyC0bgqQLt1VYijPwI29w-Al0tBSqsfVp74
+      GOOGLE_MAP_KEY: AIzaSyC8lBc5QESL_4-qme7cADrPo_zk6ucfCOA
+    ports:
+      - 8081:8081
+    depends_on:
+      - database
+
+  frontend:
+    container_name: rotasegura-frontend
+    restart: always
+    build:
+      context: ..\..\rota-segura-frontend
+      dockerfile: Dockerfile
+    image: us-central1-docker.pkg.dev/galvanic-tea-477602-t7/rotasegura/rotasegura-frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend

@@ -1,0 +1,1 @@
+alter table public.User add column LEVEL INTEGER;

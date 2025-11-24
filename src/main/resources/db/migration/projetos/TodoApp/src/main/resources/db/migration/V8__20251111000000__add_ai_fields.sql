@@ -1,0 +1,4 @@
+ALTER TABLE occurrence ADD COLUMN ai_severity VARCHAR;
+ALTER TABLE occurrence ADD COLUMN ai_type VARCHAR;
+ALTER TABLE media ADD COLUMN ai_type VARCHAR;
+ALTER TABLE media ADD COLUMN ai_severity VARCHAR;
