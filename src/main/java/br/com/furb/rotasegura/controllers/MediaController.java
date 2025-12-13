@@ -35,18 +35,6 @@ public class MediaController {
         return ResponseEntity.ok(mediaService.get(id));
     }
 
-    // TODO: Check if it is necessary
-    // @PostMapping
-    // public ResponseEntity<MediaRecord> create(@RequestBody Media media) {
-    //     return ResponseEntity.ok(mediaService.create(media));
-    // }
-
-    // TODO: Check if it is necessary
-    // @PutMapping("/{id}")
-    // public ResponseEntity<MediaRecord> update(@PathVariable UUID id, @RequestBody Media media) {
-    //     return ResponseEntity.ok(mediaService.update(id, media));
-    // }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         mediaService.delete(id);

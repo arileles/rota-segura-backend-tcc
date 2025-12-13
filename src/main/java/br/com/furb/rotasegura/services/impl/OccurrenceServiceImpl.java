@@ -46,7 +46,7 @@ public class OccurrenceServiceImpl implements OccurrenceService {
                 if (row[0] instanceof UUID) userId = (UUID) row[0];
                 else userId = UUID.fromString(row[0].toString());
             } catch (Exception ex) {
-                continue; // skip invalid ids
+                continue;
             }
             long count;
             if (row[1] instanceof Number) count = ((Number) row[1]).longValue();

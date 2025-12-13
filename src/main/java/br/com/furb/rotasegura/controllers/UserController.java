@@ -66,8 +66,7 @@ public class UserController {
         UserRecord user = userService.findById(id);
 
         try {
-            // For records (immutable), merge by converting to ObjectNode, applying patch fields and
-            // converting back to UserRecord. Preserve id and createDate to avoid accidental changes.
+
             if (!(patch instanceof ObjectNode)) {
                 throw new IllegalArgumentException("Patch must be a JSON object");
             }
@@ -76,18 +75,14 @@ public class UserController {
             ObjectNode merged = originalNode.deepCopy();
             merged.setAll((ObjectNode) patch);
 
-            // Preserve immutable fields (id and createDate) from original user
             merged.set("id", objectMapper.valueToTree(user.id()));
 
-            // Convert merged node back to UserRecord
             UserRecord updated = objectMapper.treeToValue(merged, UserRecord.class);
             user = updated;
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException("Invalid JSON for patch request", e);
         }
 
-        // validate merged entity
-        // FIXME: this validation may be better placed in service layer.
         Set<ConstraintViolation<UserRecord>> violations = validator.validate(user);
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);

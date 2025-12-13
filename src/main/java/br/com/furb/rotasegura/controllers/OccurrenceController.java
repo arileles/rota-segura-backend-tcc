@@ -51,7 +51,6 @@ public class OccurrenceController {
     // Endpoint para criar ocorrência
     @PostMapping
     public ResponseEntity<OccurrenceRecord> create(@RequestBody OccurrenceRecord body) throws IOException {
-        // Normalize reporterUser/resolvedByUser: if they are textual (just id), convert to object {"id": "..."}
         if (body.reporterUser() != null) {
             return ResponseEntity.ok(occurrenceService.save(body));
         }

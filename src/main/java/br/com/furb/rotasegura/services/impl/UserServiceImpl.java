@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserRecord save(UserRecord ur) {
-        // Ensure id is set if absent
         User user = mapRecordToEntity(ur);
         if (user.getId() == null) {
             user.setId(UUID.randomUUID());
@@ -85,8 +84,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private static User mapRecordToEntity(UserRecord record) {
-        // FIXME: Precisamos adicionar ou remover os demais campos que não estão no
-        // UserRecord.
         return new User(record.id(), record.password(), record.name(), record.email(), true, LocalDateTime.now(),
                 LocalDateTime.now(), record.phone(), record.birthDate() , record.level(), mapRoleToEntity(record.role()));
     }

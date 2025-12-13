@@ -32,7 +32,6 @@ import br.com.furb.rotasegura.domain.enumerators.OccurrenceStatus;
     @Query(value = "select reporter_user_id, count(*) as occurrences_count from public.occurrence group by reporter_user_id order by occurrences_count desc", nativeQuery = true)
     java.util.List<Object[]> findTopReportersNative();
 
-    // corrected method name: Spring Data expects 'findAllByOrderBy<Property>Desc()'
     List<Occurrence> findAllByOrderByReportedAtDesc();
 
     // Conta quantas ocorrências um usuário reportou
