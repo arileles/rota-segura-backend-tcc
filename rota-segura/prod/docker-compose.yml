@@ -25,9 +25,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-      GOOGLE_API_KEY: AIzaSyC0bgqQLt1VYijPwI29w-Al0tBSqsfVp74
-      GOOGLE_MAP_KEY: AIzaSyC8lBc5QESL_4-qme7cADrPo_zk6ucfCOA
-      GEMINI_API_KEY: AIzaSyCZqQYOCD_hLnQi_NdIIKBXPp7GHKlBDBA
+      GOOGLE_API_KEY: senha
+      GOOGLE_MAP_KEY: senha
+      GEMINI_API_KEY: senha
     ports:
       - 8081:8081
     depends_on:
